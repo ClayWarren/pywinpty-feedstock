@@ -55,6 +55,7 @@ about:
 
 extra:
   recipe-maintainers:
+    - davidbrochart
     - blink1073
     - ccordoba12
     - andfoy
