@@ -28,10 +28,10 @@ requirements:
     - toml
     - pip
     - winpty
+    - dotnet
   host:
     - python
     - pip
-    - setuptools
     - winpty
   run:
     - python
