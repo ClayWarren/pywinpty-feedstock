@@ -14,6 +14,8 @@ set PATH=%PATH%;%CARGO_HOME%\bin
 cargo-license --json > dependencies.json
 cat dependencies.json
 python %RECIPE_DIR%\check_licenses.py
+REM Install NuGet
+choco install nuget.commandline
 REM Use PEP517 to install the package
 maturin build --release -i %PYTHON%
 REM Install wheel
