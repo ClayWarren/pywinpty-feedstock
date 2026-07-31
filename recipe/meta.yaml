@@ -32,6 +32,7 @@ requirements:
   host:
     - python
     - pip
+    - dotnet
     - winpty
   run:
     - python
