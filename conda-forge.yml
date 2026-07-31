@@ -1,3 +1,5 @@
+choco:
+- windows-sdk-8.1 --version=8.100.26654.0
 azure:
   settings_win:
     pool:
