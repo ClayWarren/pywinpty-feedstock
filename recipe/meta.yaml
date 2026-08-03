@@ -28,11 +28,9 @@ requirements:
     - toml
     - pip
     - winpty
-    - dotnet
   host:
     - python
     - pip
-    - dotnet
     - winpty
   run:
     - python
