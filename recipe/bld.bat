@@ -15,6 +15,7 @@ cargo-license --json > dependencies.json
 cat dependencies.json
 python %RECIPE_DIR%\check_licenses.py
 REM Use PEP517 to install the package
+set "PATH=%PATH%;C:\ProgramData\chocolatey\bin"
 maturin build --release -i %PYTHON%
 REM Install wheel
 cd target/wheels

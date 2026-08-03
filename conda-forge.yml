@@ -1,7 +1,9 @@
+choco:
+- windows-sdk-8.1 --version=8.100.26654.0
 azure:
   settings_win:
     pool:
-      vmImage: windows-2019
+      vmImage: windows-2022
 conda_forge_output_validation: true
 github:
   branch_name: main

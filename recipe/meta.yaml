@@ -1,4 +1,4 @@
-{% set version = "2.0.15" %}
+{% set version = "3.0.5" %}
 
 package:
   name: pywinpty
@@ -6,12 +6,12 @@ package:
 
 source:
   url: https://pypi.org/packages/source/p/pywinpty/pywinpty-{{ version }}.tar.gz
-  sha256: 312cf39153a8736c617d45ce8b6ad6cd2107de121df91c455b10ce6bba7a39b2
+  sha256: 61db0db063de9865adbea66db294628f8577f608d9764a4c7d3384eeacc4e81b
 
 build:
-  number: 1
+  number: 0
   skip: true  # [not win]
-  skip: true  # [py<37]
+  skip: true  # [py<310]
 
 requirements:
   build:
@@ -24,7 +24,7 @@ requirements:
     - llvmdev
     - llvm-tools
     - libclang
-    - maturin <=0.12.0
+    - maturin >=1.1,<2.0
     - toml
     - pip
     - winpty

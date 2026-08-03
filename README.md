@@ -203,5 +203,6 @@ Feedstock Maintainers
 * [@andfoy](https://github.com/andfoy/)
 * [@blink1073](https://github.com/blink1073/)
 * [@ccordoba12](https://github.com/ccordoba12/)
+* [@davidbrochart](https://github.com/davidbrochart/)
 * [@ocefpaf](https://github.com/ocefpaf/)
 
