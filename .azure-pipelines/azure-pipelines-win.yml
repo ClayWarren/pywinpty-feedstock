@@ -60,7 +60,6 @@ jobs:
   steps:
     - script: |
         choco install windows-sdk-8.1 --version=8.100.26654.0 -fdv -y --debug
-        choco install nuget.commandline
       displayName: "Install Chocolatey Package: windows-sdk-8.1 --version=8.100.26654.0"
 
     - script: |
