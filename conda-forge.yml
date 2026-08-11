@@ -1,12 +1,15 @@
-choco:
-- windows-sdk-8.1 --version=8.100.26654.0
 azure:
   settings_win:
     pool:
       vmImage: windows-2022
+build_platform:
+  osx_arm64: osx_64
+choco:
+- windows-sdk-8.1 --version=8.100.26654.0
+conda_build:
+  pkg_format: '2'
 conda_forge_output_validation: true
 github:
   branch_name: main
   tooling_branch_name: main
-conda_build:
-  pkg_format: '2'
+test: native_and_emulated
