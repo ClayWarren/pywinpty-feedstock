@@ -5,11 +5,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/p/pywinpty/pywinpty-{{ version }}.tar.gz
+  url: https://files.pythonhosted.org/packages/source/p/pywinpty/pywinpty-{{ version }}.tar.gz
   sha256: 61db0db063de9865adbea66db294628f8577f608d9764a4c7d3384eeacc4e81b
 
 build:
-  number: 0
+  number: 1
   skip: true  # [not win]
   skip: true  # [py<310]
 
