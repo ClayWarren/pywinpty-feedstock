@@ -179,11 +179,6 @@ jobs:
           export IS_PR_BUILD="False"
         fi
         ./.scripts/run_osx_build.sh
-    - name: "Install Chocolatey Package: windows-sdk-8.1 --version=8.100.26654.0"
-      if matrix.os == 'windows'
-      run: |
-        choco install windows-sdk-8.1 --version=8.100.26654.0 -fdv -y --debug
-
 
     - name: Build on windows
       id: build-windows

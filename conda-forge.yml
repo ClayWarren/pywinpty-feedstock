@@ -4,8 +4,6 @@ azure:
       vmImage: windows-2022
 build_platform:
   osx_arm64: osx_64
-choco:
-- windows-sdk-8.1 --version=8.100.26654.0
 conda_build:
   pkg_format: '2'
 conda_forge_output_validation: true
