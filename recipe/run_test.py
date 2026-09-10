@@ -51,7 +51,8 @@ def exercise(backend_name):
 
     expect('PTY_READY')
     payload = 'terminal ünicode'
-    assert pty.write(payload + '\r\n') > 0
+    # ConPTY can return zero while an asynchronous write is pending.
+    pty.write(payload + '\r\n')
     expect('RECEIVED:' + payload[::-1])
     pty.set_size(101, 37)
     pty.write('resize\r\n')
