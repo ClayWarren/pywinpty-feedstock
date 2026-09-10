@@ -8,15 +8,19 @@ REM Install cargo-license
 set CARGO_HOME=%BUILD_PREFIX%\cargo
 mkdir %CARGO_HOME%
 icacls %CARGO_HOME% /grant Users:F
-cargo install cargo-license
+cargo install cargo-license --locked
+if errorlevel 1 exit /b 1
 REM Check that all downstream libraries licenses are present
 set PATH=%PATH%;%CARGO_HOME%\bin
 cargo-license --json > dependencies.json
+if errorlevel 1 exit /b 1
 cat dependencies.json
 python %RECIPE_DIR%\check_licenses.py
+if errorlevel 1 exit /b 1
 REM Use PEP517 to install the package
 set "PATH=%PATH%;C:\ProgramData\chocolatey\bin"
-maturin build --release -i %PYTHON%
+maturin build --release --locked -i %PYTHON%
+if errorlevel 1 exit /b 1
 REM Install wheel
 cd target/wheels
 REM set UTF-8 mode by default
@@ -24,3 +28,4 @@ chcp 65001
 set PYTHONUTF8=1
 set PYTHONIOENCODING="UTF-8"
 FOR %%w in (*.whl) DO %PYTHON% -m pip install %%w
+if errorlevel 1 exit /b 1
