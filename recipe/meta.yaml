@@ -47,7 +47,7 @@ about:
   license: MIT
   license_file:
     - LICENSE.txt
-    - {{ RECIPE_DIR }}/library_licenses
+    - {{ RECIPE_DIR }}/library_licenses/
   summary: Pseudoterminals for Windows in Python
   description: |
     PyWinpty allows creating and communicating with Windows processes that
