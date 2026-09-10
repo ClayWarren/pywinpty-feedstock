@@ -1,0 +1,141 @@
+{
+  "arm314": {
+    "subdir": "win-arm64",
+    "python": "3.14",
+    "run": 34444973446,
+    "artifact": "pywinpty-win-arm64-3.14",
+    "packages": [
+      {
+        "file": "winpty-0.4.3-hef4af3d_4.conda",
+        "record": {
+          "arch": "arm64",
+          "build": "hef4af3d_4",
+          "build_number": 4,
+          "depends": [
+            "vc >=14.3,<15",
+            "vc14_runtime >=14.44.35208"
+          ],
+          "license": "MIT",
+          "name": "winpty",
+          "platform": "win",
+          "subdir": "win-arm64",
+          "timestamp": 1789019341514,
+          "version": "0.4.3",
+          "sha256": "4d68ce92a2fd4e224d43b734c088e31a2262b6d2cb00c1e932cc15b31c11b80c",
+          "md5": "464e855b13cc2b0b89ad030d4d92ae0b",
+          "size": 120261
+        }
+      },
+      {
+        "file": "pywinpty-3.0.5-py314h0a21985_2.conda",
+        "record": {
+          "arch": "arm64",
+          "build": "py314h0a21985_2",
+          "build_number": 2,
+          "depends": [
+            "python >=3.14,<3.15.0a0",
+            "python_abi 3.14.* *_cp314",
+            "vc >=14.3,<15",
+            "vc14_runtime >=14.44.35208",
+            "winpty"
+          ],
+          "license": "MIT",
+          "name": "pywinpty",
+          "platform": "win",
+          "subdir": "win-arm64",
+          "timestamp": 1789022032162,
+          "version": "3.0.5",
+          "sha256": "cccf8629506cfbaed01eaacf4057b952fda062e44fd0cd61566bd403a82e692a",
+          "md5": "15d23bd1d0b4c04ede6ec040ba3d7ac3",
+          "size": 715989
+        }
+      }
+    ]
+  },
+  "arm315": {
+    "subdir": "win-arm64",
+    "python": "3.15",
+    "run": 34444973446,
+    "artifact": "pywinpty-win-arm64-3.15",
+    "packages": [
+      {
+        "file": "winpty-0.4.3-hef4af3d_4.conda",
+        "record": {
+          "arch": "arm64",
+          "build": "hef4af3d_4",
+          "build_number": 4,
+          "depends": [
+            "vc >=14.3,<15",
+            "vc14_runtime >=14.44.35208"
+          ],
+          "license": "MIT",
+          "name": "winpty",
+          "platform": "win",
+          "subdir": "win-arm64",
+          "timestamp": 1789019341514,
+          "version": "0.4.3",
+          "sha256": "4d68ce92a2fd4e224d43b734c088e31a2262b6d2cb00c1e932cc15b31c11b80c",
+          "md5": "464e855b13cc2b0b89ad030d4d92ae0b",
+          "size": 120261
+        }
+      },
+      {
+        "file": "pywinpty-3.0.5-py315h1a684a0_2.conda",
+        "record": {
+          "arch": "arm64",
+          "build": "py315h1a684a0_2",
+          "build_number": 2,
+          "depends": [
+            "python >=3.15.0rc2,<3.16.0a0",
+            "python_abi 3.15.* *_cp315",
+            "vc >=14.3,<15",
+            "vc14_runtime >=14.44.35208",
+            "winpty"
+          ],
+          "license": "MIT",
+          "name": "pywinpty",
+          "platform": "win",
+          "subdir": "win-arm64",
+          "timestamp": 1789022022930,
+          "version": "3.0.5",
+          "sha256": "66fbf0e608319d8647dd46ea283f42a73971d3ee39e58c6f115f16edf27999fb",
+          "md5": "c24e2f17d3f9c76e654acc9255add8e7",
+          "size": 708073
+        }
+      }
+    ]
+  },
+  "x64": {
+    "subdir": "win-64",
+    "python": "3.14",
+    "run": 34444978182,
+    "artifact": "pywinpty-win-64-3.14",
+    "packages": [
+      {
+        "file": "pywinpty-3.0.5-py314h51f0985_2.conda",
+        "record": {
+          "arch": "x86_64",
+          "build": "py314h51f0985_2",
+          "build_number": 2,
+          "depends": [
+            "python >=3.14,<3.15.0a0",
+            "python_abi 3.14.* *_cp314",
+            "ucrt >=10.0.20348.0",
+            "vc >=14.2,<15",
+            "vc14_runtime >=14.29.30139",
+            "winpty"
+          ],
+          "license": "MIT",
+          "name": "pywinpty",
+          "platform": "win",
+          "subdir": "win-64",
+          "timestamp": 1789021919449,
+          "version": "3.0.5",
+          "sha256": "cc785648681c4a99c71f567e84bcb3e13c966600f2f654ae2fddd53773ddeeb4",
+          "md5": "1e7ac69f6891937042769842bf5a4c2b",
+          "size": 749393
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+name: Pywinpty installed artifact validation (fork only)
+on:
+  push:
+    branches: [codex/runtime-validation]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  runtime:
+    if: github.repository == 'ClayWarren/pywinpty-feedstock'
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - variant: arm314
+            runner: windows-11-arm
+          - variant: arm315
+            runner: windows-11-arm
+          - variant: x64
+            runner: windows-2022
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Install exact built package and test both terminal backends
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: ./ci/runtime.ps1 ${{ matrix.variant }}
