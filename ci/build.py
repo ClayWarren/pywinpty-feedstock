@@ -9,12 +9,7 @@ def run(args):
     print(subprocess.list2cmdline([str(x) for x in args]),flush=True)
     subprocess.run(args,check=True)
 run(conda+['index',str(local)])
-for name in ['winpty']:
-    root=Path('ci/prerequisites')/name
-    print((root/'source.json').read_text(),flush=True)
-    run(conda+['build',str(root/'recipe'),'-m',str(root/'variant.yaml'),'--variants',json.dumps({'build_platform':subdir}),'--croot','C:/pywinpty-build','--output-folder',str(local),'--no-anaconda-upload','--override-channels','-c','file:///C:/pywinpty-local','-c','conda-forge'])
-    run(conda+['index',str(local)])
-run(conda+['build','recipe','-m','.ci_support/win_arm64_python3.14.____cp314.yaml','--variants',json.dumps({'build_platform':subdir}),'--croot','C:/pywinpty-build','--output-folder',str(local),'--no-anaconda-upload','--override-channels','-c','file:///C:/pywinpty-local','-c','conda-forge'])
+run(conda+['build','recipe','-m',f".ci_support/win_arm64_python{os.environ['PYWINPTY_PYTHON']}.____cp{os.environ['PYWINPTY_PYTHON'].replace('.', '')}.yaml",'--variants',json.dumps({'build_platform':subdir}),'--croot','C:/pywinpty-build','--output-folder',str(local),'--no-anaconda-upload','--override-channels','-c','file:///C:/pywinpty-local','-c','conda-forge','-c','conda-forge/label/python_rc'])
 manifest=[]
 for p in sorted((local/subdir).glob('*.conda')):
     with tempfile.TemporaryDirectory() as td:
