@@ -1,0 +1,39 @@
+name: Native pywinpty prerequisites (fork only)
+on:
+  push:
+    branches: [codex/native-validation]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  validate:
+    if: github.repository == 'ClayWarren/pywinpty-feedstock'
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - subdir: win-arm64
+            runner: windows-11-arm
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Prepare native runner and winpty prerequisite recipe
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: ./ci/prepare.ps1 ${{ matrix.subdir }}
+      - name: Build recipe and execute installed consumer tests
+        shell: cmd
+        run: ci\run.cmd ${{ matrix.subdir }}
+      - name: Stage artifacts
+        if: always()
+        shell: pwsh
+        run: ./ci/stage.ps1 ${{ matrix.subdir }}
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        if: always()
+        with:
+          name: pywinpty-${{ matrix.subdir }}
+          path: native-results/*
+          retention-days: 14

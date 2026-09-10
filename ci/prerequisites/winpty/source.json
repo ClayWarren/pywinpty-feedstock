@@ -1,0 +1,5 @@
+{
+  "repository": "https://github.com/ClayWarren/winpty-feedstock",
+  "commit": "510dd5e0c027fd404bd21f01b3efce02912766d3",
+  "note": "Unmodified previously validated recipe; Python 3.14 tool variant for native ARM64 availability."
+}
