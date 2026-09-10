@@ -24,5 +24,7 @@ jobs:
         if: always()
         with:
           name: pywinpty-win-64-3.14
-          path: C:/pywinpty-local/win-64/*.conda
+          path: |
+            C:/pywinpty-local/win-64/*.conda
+            C:/pywinpty-build/broken/*.conda
           retention-days: 14
