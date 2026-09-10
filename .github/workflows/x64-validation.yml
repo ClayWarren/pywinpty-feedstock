@@ -1,0 +1,28 @@
+name: Pywinpty x64 control (fork only)
+on:
+  push:
+    branches: [codex/x64-validation]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    if: github.repository == 'ClayWarren/pywinpty-feedstock'
+    runs-on: windows-2022
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Prepare tooling
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          Invoke-WebRequest https://github.com/mamba-org/micromamba-releases/releases/download/1.5.10-0/micromamba-win-64 -OutFile "$env:RUNNER_TEMP\micromamba.exe"
+      - name: Build and test existing x64 variant
+        shell: cmd
+        run: ci\x64.cmd
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        if: always()
+        with:
+          name: pywinpty-win-64-3.14
+          path: C:/pywinpty-local/win-64/*.conda
+          retention-days: 14
