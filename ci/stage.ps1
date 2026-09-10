@@ -13,3 +13,6 @@ if (Test-Path $root) {
             Copy-Item $_.FullName $destination
         }
 }
+
+New-Item -ItemType Directory -Path native-results/broken -Force | Out-Null
+Get-ChildItem 'C:\pywinpty-build\broken\*.conda' -ErrorAction SilentlyContinue | Copy-Item -Destination native-results/broken
