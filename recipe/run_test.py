@@ -16,7 +16,7 @@ def exercise(backend_name):
     else:
         os.environ.pop('CI', None)
         os.environ.pop('CONPTY_CI', None)
-    from winpty import PTY
+    from winpty import PTY, WinptyError
     from winpty.enums import Backend
 
     if sysconfig.get_config_var('Py_GIL_DISABLED'):
@@ -32,14 +32,19 @@ def exercise(backend_name):
         "input()"
     )
     pty = PTY(80, 25, backend=getattr(Backend, backend_name))
-    assert pty.spawn(sys.executable, subprocess.list2cmdline([sys.executable, '-u', '-c', child]))
+    # Match PtyProcess.spawn: arguments only, with a leading space for WinPTY.
+    cmdline = ' ' + subprocess.list2cmdline(['-u', '-c', child])
+    assert pty.spawn(sys.executable, cmdline)
     output = ''
 
     def expect(text):
         nonlocal output
         deadline = time.monotonic() + 20
         while text not in output and time.monotonic() < deadline:
-            output += pty.read(blocking=False)
+            try:
+                output += pty.read(blocking=False)
+            except WinptyError as error:
+                raise AssertionError((backend_name, text, output, pty.get_exitstatus())) from error
             time.sleep(0.05)
         assert text in output, (text, output)
         output = ''
@@ -54,9 +59,9 @@ def exercise(backend_name):
     pty.write('exit\r\n')
     deadline = time.monotonic() + 20
     while pty.isalive() and time.monotonic() < deadline:
-        pty.read(blocking=False)
         time.sleep(0.05)
     assert not pty.isalive(), 'Child failed to exit'
+    assert pty.get_exitstatus() == 0, pty.get_exitstatus()
     print('PASS:', backend_name, 'Unicode I/O, child-observed resize, exit')
 
 
