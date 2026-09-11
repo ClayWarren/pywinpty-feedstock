@@ -108,7 +108,7 @@
   "x64": {
     "subdir": "win-64",
     "python": "3.14",
-    "run": 34444978182,
+    "run": 34446223172,
     "artifact": "pywinpty-win-64-3.14",
     "packages": [
       {
@@ -129,11 +129,11 @@
           "name": "pywinpty",
           "platform": "win",
           "subdir": "win-64",
-          "timestamp": 1789021919449,
+          "timestamp": 1789022876689,
           "version": "3.0.5",
-          "sha256": "cc785648681c4a99c71f567e84bcb3e13c966600f2f654ae2fddd53773ddeeb4",
-          "md5": "1e7ac69f6891937042769842bf5a4c2b",
-          "size": 749393
+          "sha256": "bbb9b4e4e3c04c37f23933b1dc1d5676b8c1a582a024f7184dcd2736140c8af8",
+          "md5": "b1edff1700d7fa39ab4de9d99c5aaea4",
+          "size": 749590
         }
       }
     ]
