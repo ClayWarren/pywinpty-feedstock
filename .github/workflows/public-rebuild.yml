@@ -96,13 +96,7 @@ jobs:
       uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
       with:
         name: public-rebuild-${{ matrix.CONFIG }}
-        path: 'C:/bld/win-arm64/pywinpty*.conda
-
-          C:/bld/broken/pywinpty*.conda
-
-          D:/bld/win-64/pywinpty*.conda
-
-          D:/bld/broken/pywinpty*.conda'
+        path: ${{ startsWith(matrix.CONFIG, 'win_64') && 'D' || 'C' }}:/bld/*/pywinpty*.conda
         if-no-files-found: warn
         retention-days: 14
     if: github.repository == 'ClayWarren/pywinpty-feedstock'
