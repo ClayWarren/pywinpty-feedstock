@@ -1,0 +1,114 @@
+name: Rebuild failed pywinpty variants with public dependencies
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha
+    }}
+  cancel-in-progress: true
+jobs:
+  build:
+    name: ${{ matrix.CONFIG }}
+    runs-on: ${{ matrix.runs_on }}
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 50
+      matrix:
+        include:
+        - CONFIG: win_64_python3.13.____cp313
+          STORE_BUILD_ARTIFACTS: false
+          UPLOAD_PACKAGES: false
+          build_platform: win-64
+          build_workspace_dir: D:\\bld\\
+          docker_run_args: null
+          free_disk_space: skip
+          os: windows
+          pagefile_size: 0
+          resize_partitions: false
+          runs_on:
+          - windows-2022
+          tools_install_dir: D:\Miniforge
+        - CONFIG: win_64_python3.14.____cp314
+          STORE_BUILD_ARTIFACTS: false
+          UPLOAD_PACKAGES: false
+          build_platform: win-64
+          build_workspace_dir: D:\\bld\\
+          docker_run_args: null
+          free_disk_space: skip
+          os: windows
+          pagefile_size: 0
+          resize_partitions: false
+          runs_on:
+          - windows-2022
+          tools_install_dir: D:\Miniforge
+        - CONFIG: win_arm64_python3.14.____cp314
+          STORE_BUILD_ARTIFACTS: false
+          UPLOAD_PACKAGES: false
+          build_platform: win-arm64
+          build_workspace_dir: C:\\bld\\
+          docker_run_args: null
+          free_disk_space: skip
+          os: windows
+          pagefile_size: 0
+          resize_partitions: false
+          runs_on:
+          - windows-11-arm
+          tools_install_dir: C:\Miniforge
+        - CONFIG: win_arm64_python3.15.____cp315
+          STORE_BUILD_ARTIFACTS: false
+          UPLOAD_PACKAGES: false
+          build_platform: win-arm64
+          build_workspace_dir: C:\\bld\\
+          docker_run_args: null
+          free_disk_space: skip
+          os: windows
+          pagefile_size: 0
+          resize_partitions: false
+          runs_on:
+          - windows-11-arm
+          tools_install_dir: C:\Miniforge
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+    - name: Build on windows
+      id: build-windows
+      if: matrix.os == 'windows'
+      shell: cmd
+      run: 'set "flow_run_id=github_%GITHUB_RUN_ID%"
+
+        set "remote_url=https://github.com/%GITHUB_REPOSITORY%"
+
+        set "sha=%GITHUB_SHA%"
+
+        call ".scripts\run_win_build.bat"
+
+        '
+      env:
+        BUILD_PLATFORM: ${{ matrix.build_platform }}
+        CI: github_actions
+        CONDA_BLD_PATH: ${{ matrix.build_workspace_dir }}
+        CONFIG: ${{ matrix.CONFIG }}
+        MINIFORGE_HOME: ${{ matrix.tools_install_dir }}
+        PYTHONUNBUFFERED: 1
+        UPLOAD_PACKAGES: ${{ matrix.UPLOAD_PACKAGES }}
+        RATTLER_BUILD_COLOR: always
+        RATTLER_BUILD_ENABLE_GITHUB_INTEGRATION: 'true'
+    - name: Retain rebuilt packages
+      if: always()
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+      with:
+        name: public-rebuild-${{ matrix.CONFIG }}
+        path: 'C:/bld/win-arm64/pywinpty*.conda
+
+          C:/bld/broken/pywinpty*.conda
+
+          D:/bld/win-64/pywinpty*.conda
+
+          D:/bld/broken/pywinpty*.conda'
+        if-no-files-found: warn
+        retention-days: 14
+    if: github.repository == 'ClayWarren/pywinpty-feedstock'
+'on':
+  push:
+    branches:
+    - codex/winpty17-public-rebuild
+permissions:
+  contents: read
