@@ -1,7 +1,7 @@
-name: Pywinpty comparison of published Winpty builds
+name: Pywinpty native runtime with public Winpty
 on:
   push:
-    branches: [codex/winpty17-consumer-validation]
+    branches: [codex/winpty17-public-runtime]
   workflow_dispatch:
 permissions:
   contents: read
@@ -12,13 +12,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        winpty_build: ['4', 'h57928b3_5']
-    runs-on: windows-2022
+        include:
+          - variant: arm314
+            runner: windows-11-arm
+          - variant: arm315
+            runner: windows-11-arm
+          - variant: x64
+            runner: windows-2022
+    runs-on: ${{ matrix.runner }}
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-      - name: Install exact built package and test both terminal backends
+      - name: Install exact built package with public Winpty and test both backends
         shell: pwsh
         env:
           GH_TOKEN: ${{ github.token }}
-        run: ./ci/runtime.ps1 x64 ${{ matrix.winpty_build }}
+        run: ./ci/runtime.ps1 ${{ matrix.variant }}

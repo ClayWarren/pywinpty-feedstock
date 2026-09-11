@@ -6,27 +6,6 @@
     "artifact": "pywinpty-win-arm64-3.14",
     "packages": [
       {
-        "file": "winpty-0.4.3-hef4af3d_4.conda",
-        "record": {
-          "arch": "arm64",
-          "build": "hef4af3d_4",
-          "build_number": 4,
-          "depends": [
-            "vc >=14.3,<15",
-            "vc14_runtime >=14.44.35208"
-          ],
-          "license": "MIT",
-          "name": "winpty",
-          "platform": "win",
-          "subdir": "win-arm64",
-          "timestamp": 1789019341514,
-          "version": "0.4.3",
-          "sha256": "4d68ce92a2fd4e224d43b734c088e31a2262b6d2cb00c1e932cc15b31c11b80c",
-          "md5": "464e855b13cc2b0b89ad030d4d92ae0b",
-          "size": 120261
-        }
-      },
-      {
         "file": "pywinpty-3.0.5-py314h0a21985_2.conda",
         "record": {
           "arch": "arm64",
@@ -58,27 +37,6 @@
     "run": 34444973446,
     "artifact": "pywinpty-win-arm64-3.15",
     "packages": [
-      {
-        "file": "winpty-0.4.3-hef4af3d_4.conda",
-        "record": {
-          "arch": "arm64",
-          "build": "hef4af3d_4",
-          "build_number": 4,
-          "depends": [
-            "vc >=14.3,<15",
-            "vc14_runtime >=14.44.35208"
-          ],
-          "license": "MIT",
-          "name": "winpty",
-          "platform": "win",
-          "subdir": "win-arm64",
-          "timestamp": 1789019341514,
-          "version": "0.4.3",
-          "sha256": "4d68ce92a2fd4e224d43b734c088e31a2262b6d2cb00c1e932cc15b31c11b80c",
-          "md5": "464e855b13cc2b0b89ad030d4d92ae0b",
-          "size": 120261
-        }
-      },
       {
         "file": "pywinpty-3.0.5-py315h1a684a0_2.conda",
         "record": {
